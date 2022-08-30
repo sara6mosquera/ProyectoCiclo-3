@@ -1,5 +1,6 @@
-package entities;
+package com.IngresosEgresos.Web.entities;
 import java.util.Date;
+
 
 public class Empresa {
     /*
