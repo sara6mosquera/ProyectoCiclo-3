@@ -1,8 +1,8 @@
-package entities;
+package com.IngresosEgresos.Web.entities;
 import java.util.Date;
 
 public class Perfil{
- //Atributos
+    //Atributos
     long id;
     String image;
     String phone;
@@ -12,7 +12,7 @@ public class Perfil{
 
     //Basados en Clases
     Empleado user;
-    
+
     //Constructor
     public Perfil()
     {
@@ -37,7 +37,7 @@ public class Perfil{
         this.image=  image;
     }
 
-	public String getPhone() {
+    public String getPhone() {
         return phone;
     }
 
@@ -45,6 +45,6 @@ public class Perfil{
         this.phone=  phone;
     }
 
-    
+
 
 }

@@ -1,23 +1,22 @@
-package entities;
+package com.IngresosEgresos.Web.entities;
 import java.util.Date;
 
 //en el figma aparece como Transaction pero en el pdf se habla de entidades en español
- 
 public class MovimientoDinero {
-  
-  //Atributos
+
+    //Atributos
     long id;
     String concept;
     float amount;
-    
+
     Date createdAt;
     Date updatedAt;
 
     //Basados en Clases
     Empleado user;
     Empresa enterprise;
-	
-	
+
+
     //Constructor
     public MovimientoDinero()
     {
@@ -49,5 +48,6 @@ public class MovimientoDinero {
     public void setAmount(float amount) {
         this.amount=  amount;
     }
- 
+
 }
+

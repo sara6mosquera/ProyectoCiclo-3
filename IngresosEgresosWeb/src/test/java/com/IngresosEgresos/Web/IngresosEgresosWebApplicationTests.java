@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.IngresosEgresos.Web;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
