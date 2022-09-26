@@ -1,7 +1,13 @@
 package com.IngresosEgresos.Web.services;
+import com.IngresosEgresos.Web.ResourceNotFoundException;
 import com.IngresosEgresos.Web.entities.Empleado;
+import com.IngresosEgresos.Web.entities.Empresa;
 import com.IngresosEgresos.Web.repositories.EmployeeRepository;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -15,7 +21,7 @@ public class UserServices {
 
     public List<Empleado> consultarUsuarios()
     {
-        return this.repository.findAll();
+        return (List<Empleado>) this.repository.findAll();
         //return "hola";
     }
     public Optional<Empleado> consultarUnUsuario(long id)
@@ -35,7 +41,18 @@ public class UserServices {
 //return this.repositor
         return "mundo";
     }
+    public ResponseEntity<Empleado> editarUnUsuario(@PathVariable Long id, @RequestBody Empleado empleadoDetails){
+        Empleado user = repository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Employee not exist with id :" + id));
 
+        user.setNombre(empleadoDetails.getNombre());
+        user.setEmail(empleadoDetails.getEmail());
+        //user.setPhone(empleadoDetails.getPhone());
+        //user.setDocument(empleadoDetails.getDocument());
+
+        Empleado updatedEmpleado = repository.save(user);
+        return ResponseEntity.ok(updatedEmpleado);
+    }
     public void eliminarUnUsuario(long id)
     {
         this.repository.deleteById(id);

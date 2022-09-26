@@ -1,5 +1,6 @@
 package com.IngresosEgresos.Web.entities;
 import javax.persistence.*;
+//import java.io.Serializable;
 import java.util.Date;
 
 @Entity
@@ -29,15 +30,15 @@ public class Empresa {
     Date updatedAt;
 
     //Basados en Clases
-    /*
-    @OneToMany(cascade = CascadeType.ALL, targetEntity = Empleado.class)
-    @JoinColumn(name = "id")
-    private List<Empleado> users;
 
-    @OneToMany(cascade = CascadeType.ALL, targetEntity = MovimientoDinero.class)
-    @JoinColumn(name = "id")
-    private List<MovimientoDinero> transactions;
-    */
+    //@OneToMany(cascade = CascadeType.ALL, targetEntity = Empleado.class)
+    //@JoinColumn(name = "id")
+    //private List<Empleado> users;
+
+    //@OneToMany(cascade = CascadeType.ALL, targetEntity = MovimientoDinero.class)
+    //@JoinColumn(name = "id")
+    //private List<MovimientoDinero> transactions;
+
 
     //Empleado[] users;
     //MovimientoDinero[] transactions;
@@ -58,6 +59,8 @@ public class Empresa {
          this.address=address;
          this.createdAt = new Date();
          this.updatedAt = new Date();
+         //this.setCreatedAt(new Date());
+         //this.setUpdatedAt(new Date());
     }
 
     //Getters y Setters

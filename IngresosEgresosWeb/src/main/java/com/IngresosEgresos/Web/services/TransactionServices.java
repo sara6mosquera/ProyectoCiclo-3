@@ -1,5 +1,6 @@
 package com.IngresosEgresos.Web.services;
 
+import com.IngresosEgresos.Web.entities.Empleado;
 import com.IngresosEgresos.Web.entities.MovimientoDinero;
 import com.IngresosEgresos.Web.repositories.TransactionRepository;
 import org.springframework.stereotype.Service;
@@ -17,7 +18,7 @@ public class TransactionServices {
 
     public List<MovimientoDinero> consultarTransactions()
     {
-        return this.repository.findAll();
+        return (List<MovimientoDinero>) this.repository.findAll();
         //return "hola";
     }
     public Optional<MovimientoDinero> consultarUnTransaction(long id)

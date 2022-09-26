@@ -11,10 +11,17 @@ public class Empleado{
     long id;
     @Column(name = "email")
     String email;
+
+
+
+    @Column(name = "nombre")
+    String nombre;
     @Column(name = "createdAt")
     Date createdAt;
     @Column(name = "updatedAt")
     Date updatedAt;
+
+
 
     //Basados en Clases
     /*
@@ -36,6 +43,13 @@ public class Empleado{
     }
 
     //Getters y Setters
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
     public long getId() {
         return id;
     }
