@@ -2,6 +2,7 @@ package com.IngresosEgresos.Web.controllers;
 import com.IngresosEgresos.Web.entities.MovimientoDinero;
 import com.IngresosEgresos.Web.services.TransactionServices;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
 
@@ -29,14 +30,27 @@ public class MovementsController {
         //return “200”;
     }
 
-    @PatchMapping("/enterprises/{id}/movements")
-    public String consultarMovimientos2(@PathVariable long id)
+    //@PatchMapping("/enterprises/{id}/movements")
+    //public String consultarMovimientos2(@PathVariable long id)
+    //{
+    //    return "200";
+    //}
+  //  @DeleteMapping("/enterprises/{id}/movements")
+    //public String borrarMovimientos(@PathVariable long id)
+    //{
+    //    return "200";
+    //}
+  @PatchMapping("/movements/{id}") //se actualiza un solo campo
+  public RedirectView updmovements(@PathVariable ("id") long id)//,@PathVariable("email") String email,@PathVariable("name") String name,@PathVariable("phone") String phone )
+  {
+      this.serviceTransaction.editarUnTransaction(id);
+      return new RedirectView("/transacciones");
+      //return “200“;
+  }
+    @DeleteMapping("/movements/{id}")
+    public RedirectView borrarmovements(@PathVariable ("id") long id)
     {
-        return "200";
-    }
-    @DeleteMapping("/enterprises/{id}/movements")
-    public String borrarMovimientos(@PathVariable long id)
-    {
-        return "200";
+        this.serviceTransaction.eliminarUnTransaction(id);
+        return new RedirectView("/transacciones");
     }
 }

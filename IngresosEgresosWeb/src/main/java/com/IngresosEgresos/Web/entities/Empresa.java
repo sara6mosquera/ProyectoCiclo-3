@@ -15,19 +15,19 @@ public class Empresa {
     //Atributos
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    public  long id;
     @Column(name = "name")
-    String name;
+    public String name;
     @Column(name = "document")
-    String document;
+    public String document;
     @Column(name = "phone")
-    String phone;
+    public String phone;
     @Column(name = "address")
-    String address;
+    public String address;
     @Column(name = "createdAt")
-    Date createdAt;
+    public Date createdAt;
     @Column(name = "updatedAt")
-    Date updatedAt;
+    public Date updatedAt;
 
     //Basados en Clases
 

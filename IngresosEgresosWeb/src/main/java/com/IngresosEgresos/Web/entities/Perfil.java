@@ -8,15 +8,15 @@ public class Perfil{
     //Atributos
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    long id;
+    public long id;
     @Column(name = "image")
-    String image;
+    public String image;
     @Column(name = "phone")
-    String phone;
+    public String phone;
     @Column(name = "createdAt")
-    Date createdAt;
+    public Date createdAt;
     @Column(name = "updatedAt")
-    Date updatedAt;
+    public Date updatedAt;
 
     //Basados en Clases
     /*

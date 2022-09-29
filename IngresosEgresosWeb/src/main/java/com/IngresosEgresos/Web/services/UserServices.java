@@ -1,7 +1,7 @@
 package com.IngresosEgresos.Web.services;
+
 import com.IngresosEgresos.Web.ResourceNotFoundException;
 import com.IngresosEgresos.Web.entities.Empleado;
-import com.IngresosEgresos.Web.entities.Empresa;
 import com.IngresosEgresos.Web.repositories.EmployeeRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -13,7 +13,7 @@ import java.util.Optional;
 
 @Service
 public class UserServices {
-    private EmployeeRepository repository;
+    public EmployeeRepository repository;
 
     public UserServices(EmployeeRepository repository) {
         this.repository = repository;
@@ -27,6 +27,7 @@ public class UserServices {
     public Optional<Empleado> consultarUnUsuario(long id)
     {
         return this.repository.findById(id);
+
         //return "mundo";
     }
     public Empleado crearUsuario(Empleado newEmpleado)
@@ -36,10 +37,17 @@ public class UserServices {
         //return "mundo";
     }
 
-    public String editarUnUsuario(long id)
+    public Boolean editarUnUsuario(long id, String email, String Nombre,String phone)
     {
-//return this.repositor
-        return "mundo";
+        Optional<Empleado> user = this.repository.findById(id);
+        if (user.isPresent()){
+            user.get().setEmail(email);
+            user.get().setNombre(Nombre);
+            user.get().setPhone(phone);
+            this.repository.save(user.get());
+            return true;
+        }
+        return false;
     }
     public ResponseEntity<Empleado> editarUnUsuario(@PathVariable Long id, @RequestBody Empleado empleadoDetails){
         Empleado user = repository.findById(id)
@@ -53,9 +61,10 @@ public class UserServices {
         Empleado updatedEmpleado = repository.save(user);
         return ResponseEntity.ok(updatedEmpleado);
     }
-    public void eliminarUnUsuario(long id)
+    public boolean eliminarUnUsuario(long id)
     {
         this.repository.deleteById(id);
+        return true;
         //return "mundo";
     }
 

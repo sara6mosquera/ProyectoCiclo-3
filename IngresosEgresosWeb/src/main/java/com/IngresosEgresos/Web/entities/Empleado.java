@@ -8,20 +8,24 @@ public class Empleado{
     //Atributos
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    long id;
+    public long id;
     @Column(name = "email")
-    String email;
-
-
+    public String email;
 
     @Column(name = "nombre")
-    String nombre;
+    public String nombre;
     @Column(name = "createdAt")
-    Date createdAt;
+    public Date createdAt;
     @Column(name = "updatedAt")
-    Date updatedAt;
+    public Date updatedAt;
+
+    @Column(name = "phone")
+    public String phone;
 
 
+
+    @Column(name = "idperfil")
+    public String idperfil;
 
     //Basados en Clases
     /*
@@ -35,14 +39,23 @@ public class Empleado{
     {
 
     }
-    public Empleado(String email)
+    public Empleado(String email, String nombre,String phone)
     {
         this.email=email;
+        this.nombre=nombre;
+        this.phone=phone;
         this.createdAt = new Date();
         this.updatedAt = new Date();
     }
 
     //Getters y Setters
+    public String getIdperfil() {
+        return idperfil;
+    }
+
+    public void setIdperfil(String idperfil) {
+        this.idperfil = idperfil;
+    }
     public String getNombre() {
         return nombre;
     }
@@ -65,5 +78,11 @@ public class Empleado{
     public void setEmail(String email) {
         this.email=  email;
     }
+    public String getPhone() {
+        return phone;
+    }
 
+    public void setPhone(String phone) {
+        this.phone=  phone;
+    }
 }

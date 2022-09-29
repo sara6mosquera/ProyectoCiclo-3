@@ -10,15 +10,18 @@ public class MovimientoDinero {
     //Atributos
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    long id;
+    public long id;
     @Column(name = "concept")
-    String concept;
+    public String concept;
     @Column(name = "amount")
-    float amount;
+    public float amount;
     @Column(name = "createdAt")
-    Date createdAt;
+    public  Date createdAt;
+
+
+
     @Column(name = "updatedAt")
-    Date updatedAt;
+    public Date updatedAt;
 
     //Basados en Clases
     /*
@@ -40,6 +43,13 @@ public class MovimientoDinero {
     }
 
     //Getters y Setters
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
+    }
     public long getId() {
         return id;
     }

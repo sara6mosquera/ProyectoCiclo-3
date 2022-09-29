@@ -1,12 +1,16 @@
 package com.IngresosEgresos.Web.controllers;
+
 import com.IngresosEgresos.Web.entities.Empresa;
 import com.IngresosEgresos.Web.services.EnterpriseServices;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.core.oidc.user.OidcUser;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
-
+@CrossOrigin(origins = "http://localhost:8080")
 @Controller
 public class FrontEnterpriseControllers {
     EnterpriseServices serviceEnterprise;
@@ -17,7 +21,7 @@ public class FrontEnterpriseControllers {
     }
 
     @GetMapping("/")
-    public String index()
+    public String index(Model model, @AuthenticationPrincipal OidcUser principal)
     {
         return  "index";
     }
@@ -31,8 +35,9 @@ public class FrontEnterpriseControllers {
     }
 
     @GetMapping("/empresas/new")
-    public String newEmpresa()
+    public String newEmpresa(Model pModel)
     {
+        pModel.addAttribute("empresa",new Empresa());
         return "new-enterprise";
 
     }

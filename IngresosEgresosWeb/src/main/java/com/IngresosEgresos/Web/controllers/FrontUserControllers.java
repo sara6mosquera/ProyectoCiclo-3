@@ -2,14 +2,14 @@ package com.IngresosEgresos.Web.controllers;
 
 import com.IngresosEgresos.Web.entities.Empleado;
 import com.IngresosEgresos.Web.services.UserServices;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
-
+@CrossOrigin(origins = "http://localhost:8080")
 @Controller
 public class FrontUserControllers {
     @Autowired
@@ -22,14 +22,16 @@ public class FrontUserControllers {
 //        return "index";
 //    }
 
-    @GetMapping("/users1")
+    @GetMapping("/users")
     public String users(Model pModel)
     {
+
         List<Empleado> Empleados=  this.serviceUser.consultarUsuarios();
         pModel.addAttribute("empleado",Empleados);
-        return "users";
+
+        return "usuarios";
     }
-    @GetMapping("/users1/new")
+    @GetMapping("/users/new")
     public String newUser(Model pModel)
     {
         pModel.addAttribute("empleado", new Empleado());

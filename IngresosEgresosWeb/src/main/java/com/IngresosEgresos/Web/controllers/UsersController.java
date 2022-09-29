@@ -1,11 +1,11 @@
 package com.IngresosEgresos.Web.controllers;
-import org.springframework.web.bind.annotation.*;
+
 import com.IngresosEgresos.Web.entities.Empleado;
 import com.IngresosEgresos.Web.services.UserServices;
-
-import java.util.List;
-import java.util.Optional;
-
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.view.RedirectView;
+@CrossOrigin(origins = "http://localhost:8080")
 @RestController
 public class UsersController {
 
@@ -21,11 +21,13 @@ public class UsersController {
 //        return (List<Empleado>) this.serviceUser.consultarUsuarios();
 //        //return “200“;
 //    }
-
-    @PostMapping("/users")
-    public Empleado CrearEmployee(@RequestBody Empleado pEmpleado)
+//@DateTimeFormat(pattern="YYYY-MM-DD")
+    @PostMapping("/user")
+    public RedirectView CrearEmployee(@ModelAttribute Empleado pEmpleado, Model pModel) //RequestBody type JSON
     {
-        return this.serviceUser.crearUsuario(pEmpleado);
+        pModel.addAttribute(pEmpleado);
+        this.serviceUser.crearUsuario(pEmpleado);
+        return new RedirectView("/users");
         //return “200”;
     }
 
@@ -35,17 +37,25 @@ public class UsersController {
 //        return this.serviceUser.consultarUnUsuario(id);
 //        //return “200“;
 //    }
-    @PatchMapping("/user/{id}")
-    public Optional<Empleado> EmployeeList2(@PathVariable long id)
+    @PatchMapping("/user/{id}") //se actualiza un solo campo
+    public RedirectView updEmployee(@PathVariable ("id") long id,@PathVariable("email") String email,@PathVariable("name") String name,@PathVariable("phone") String phone )
     {
-        return this.serviceUser.consultarUnUsuario(id);
+         this.serviceUser.editarUnUsuario(id,email,name,phone);
+        return new RedirectView("/users");
         //return “200“;
     }
 
+    @PutMapping("/user/{id}")//se acutaliza todos los campos
+    public RedirectView updEmployeeSll(@PathVariable ("id") long id,@PathVariable("email") String email,@PathVariable("name") String name,@PathVariable("phone") String phone )
+    {
+        this.serviceUser.editarUnUsuario(id,email,name,phone);
+        return new RedirectView("/users");
+        //return “200“;
+    }
     @DeleteMapping("/user/{id}")
-    public String borrarEmployee(@PathVariable long id)
+    public RedirectView borrarEmployee(@PathVariable ("id") long id)
     {
         this.serviceUser.eliminarUnUsuario(id);
-        return "200";
+        return new RedirectView("/users");
     }
 }
